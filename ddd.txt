@@ -1,0 +1,53 @@
+
+const nam = document.getElementById("nm").value.trim();
+	const phon = document.getElementById("pN").value.trim();
+	const loc = document.getElementById("loce").value.trim();
+
+	const nameError = document.getElementById("nameErr");
+	const phneError = document.getElementById("phoneErr");
+	const locationError = document.getElementById("locationErr");
+
+	let valid = true;
+	nameError.textContent = "";
+	phneError.textContent = "";
+	locationError.textContent = "";	
+	document.getElementById("pN").style.border = "2px solid green";
+	document.getElementById("loce").style.border = "2px solid green";
+	document.getElementById("nm").style.border = "2px solid green";
+	document.getElementById("loader").style.display = "block";
+
+	if (nam === "") {
+		nameError.textContent = "Name is required.";
+		valid = false;
+	}
+
+	if (phon === "") {
+		phneError.textContent = "Phone number is required.";
+		valid = false;
+	}else if(!/^\d{10}$/.test(phon)) {
+		phneError.textContent = "Enter a valid phone number (10 digits).";
+		document.getElementById("pN").style.border = "2px solid red";
+		document.getElementById("loader").style.display = "none";
+		valid = false;
+		
+	}
+
+	if (loc === "Select your Location") {
+		locationError.textContent = "Select your location";
+		document.getElementById("loce").style.border = "2px solid red";
+		document.getElementById("loader").style.display = "none";
+		valid = false;
+	}
+
+	if(valid) {
+		document.getElementById("form").reset();
+		
+	}
+
+  
+	if(!valid) {
+		document.getElementById("loader").style.display = "none";
+    return false;
+		
+	}
+	
